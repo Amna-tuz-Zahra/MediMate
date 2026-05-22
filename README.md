@@ -129,38 +129,50 @@ MediMate AI is designed around a decoupled, modular architecture separation:
 ### Method 1: Qt Creator (Recommended)
 
 1. Clone the Repository:
-   ```bash
-   git clone https://github.com/Amna-tuz-Zahra/MediMate.git
-   cd MediMate
-Open the Project:
-Launch Qt Creator
-Select File → Open File or Project...
-Navigate to the cloned folder and open MediMate.pro
-Configure Build Kit:
-Select your installed Qt 6 kit (e.g., Desktop Qt 6.x.x MinGW 64-bit)
-Compile & Execute:
-Press Ctrl + B to build the application
-Press Ctrl + R to run it
-Method 2: Command Line (qmake)
-
-Clone the Repository:
-
+```bash
 git clone https://github.com/Amna-tuz-Zahra/MediMate.git
 cd MediMate
+```
 
-Create Build Directory:
+2. Open the Project:
+- Launch Qt Creator
+- Click File → Open File or Project...
+- Navigate to the cloned folder
+- Open MediMate.pro
 
+3. Configure Build Kit:
+- Select your installed Qt 6 kit (e.g., Desktop Qt 6.x.x MinGW 64-bit)
+
+4. Compile & Execute:
+- Press Ctrl + B to build the application
+- Press Ctrl + R to run it
+
+---
+
+### Method 2: Command Line (qmake)
+
+1. Clone the Repository:
+```bash
+git clone https://github.com/Amna-tuz-Zahra/MediMate.git
+cd MediMate
+```
+
+2. Create Build Directory:
+```bash
 mkdir build
 cd build
+```
 
-Run qmake and Build:
-
+3. Run qmake and Build:
+```bash
 qmake ..\MediMate.pro
-mingw32-make   # or 'make' / 'nmake' depending on your toolchain
+mingw32-make   # or make / nmake depending on your toolchain
+```
 
-Run the Application:
-
+4. Run the Application:
+```bash
 release\MediMate.exe
+```
 ---
 
 ## 📌 Project Highlights
