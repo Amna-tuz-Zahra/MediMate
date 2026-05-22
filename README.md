@@ -13,8 +13,6 @@
 
 ---
 
-# 🩺 MediMate AI
-
 ## 🌟 Overview
 
 MediMate AI is a professional, fully offline, privacy-focused health assistant desktop application.  
