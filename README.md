@@ -1,5 +1,3 @@
-# 🩺 MediMate AI
-
 <div align="center">
   <img width="80" src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Stethoscope/3D/stethoscope_3d.png" alt="MediMate Logo"/>
   <h3>A professional offline AI health assistant built with Qt 6 & C++17</h3>
@@ -13,118 +11,84 @@
 
 ---
 
+# 🩺 MediMate AI
+
 ## 🌟 Overview
 
-**MediMate AI** is a professional, fully offline, privacy-focused health assistant desktop application. Engineered from the ground up to operate completely client-side without cloud APIs or external network dependency, MediMate AI guarantees that your sensitive health data never leaves your local machine.
+MediMate AI is a professional, fully offline, privacy-focused health assistant desktop application.  
+It runs entirely on the local machine without any cloud API or internet dependency.
 
-* **Professional offline AI health assistant** desktop application.
-* Built using modern **C++17** and the **Qt 6** framework.
-* Focuses on absolute **privacy**, **offline execution**, and **intelligent health assistance**.
+- Built with **C++17**
+- Uses **Qt 6 framework**
+- Designed for **offline intelligent health assistance**
 
 ---
 
 ## ✨ Features
 
 ### 🤖 Intelligent Health Assistant Engine
-* **Context-Aware Chat:** Maintains stateful, multi-turn conversations using a 6-state finite state machine (FSM).
-* **Randomized Personality:** Dynamic, natural greetings, wellness tips, and fallback responses drawn from pre-configured pools.
-* **Emergency Interrupter:** Continuously scans input for 18+ critical keywords (e.g., *chest pain*, *stroke*, *choking*) to immediately halt normal flow and display critical emergency instructions.
+- Context-aware multi-turn conversation using a **6-state FSM**
+- Randomized personality responses for natural interaction
+- Emergency detection system for critical medical keywords
 
 ### 🩺 Symptom Analysis System
-* **Tokenized Parsing:** Natural language parser identifies symptoms and cross-references them with a built-in local medical knowledge base.
-* **Severity Assessment:** Dynamically prompts for pain/severity levels (1–10) using custom UI widgets and renders a structured diagnosis card complete with causes, recommended actions, and red flags.
+- Token-based symptom detection with local knowledge base
+- Severity input system (1–10 scale)
+- Structured diagnosis output (causes, recommendations, warnings)
 
 ### 🥗 Diet Planning Module
-* **Goal-Adaptive Recommendations:** Generates complete daily 3-meal plans (Breakfast, Lunch, Dinner) tailored to the user's primary health goal (e.g., Weight Loss, Muscle Building, Wellness).
-* **Condition Warnings:** Automatically applies critical dietary precautions and warnings for conditions such as diabetes.
+- Personalized 3-meal plans (Breakfast, Lunch, Dinner)
+- Goal-based adaptation (Weight Loss, Muscle Gain, Wellness)
+- Condition-aware dietary warnings (e.g., diabetes support)
 
 ### 🏃 Exercise Recommendation System
-* **Custom Routines:** Formulates targeted workouts (Strength, Cardio HIIT, or Wellness walks) based on user goals, physical metrics, and preferred session duration.
+- Custom workout generation (Strength / Cardio / Wellness)
+- Adapted to user health goals and profile
 
 ### 👤 User Profile Management
-* **Secure Profile CRUD:** Create, load, and delete user profiles locally.
-* **Metric Storage:** Tracks metrics including age, gender, height, weight, health conditions, and fitness preferences to customize health calculations.
+- Create, load, and delete profiles locally
+- Stores age, gender, height, weight, and health conditions
+- Fully offline persistent data storage
 
-### 📊 Session History & Health Tracking
-* **Conversation Replay:** Local history storage tags and saves every message under sender roles (`USER`, `BOT`, `EMERGENCY`) for future review.
-* **Wellness Dashboard:** Renders a real-time, composite **Health Score** (0–100) calculated from profile completion, daily task checklist status, physical activity levels, and general inputs.
-* **Interactive Checklist:** Auto-generates health checklist items from recommendations with direct user checklist tracking.
-
-### 🎨 Modern Qt-Based UI
-* **Two-Panel Layout:** A sleek gradient brand welcome panel coupled with a clean, functional workspace panel.
-* **Fluid Interaction:** Custom elements including animated suggestion chips, a dynamic severity slider, custom-styled scrollbars, and styled HTML chat bubbles.
+### 📊 Health Tracking System
+- Real-time Health Score (0–100)
+- Tracks activity level and profile completion
+- Interactive checklist system
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Language Standard:** C++17 (utilizing `std::filesystem` and standard library algorithms).
-* **UI Framework:** Qt 6 (Widgets module).
-* **Styling Engine:** Qt Style Sheets (QSS) for styling and premium theme design.
-* **Data Layer:** Standard File I/O + custom serialization for local profile/task storage.
-* **Project System:** Qt Project System (`.pro` / `qmake`).
+- **Language:** C++17  
+- **UI Framework:** Qt 6 (Widgets)  
+- **Styling:** Qt Style Sheets (QSS)  
+- **Architecture:** FSM-based modular system  
+- **Storage:** Local file-based persistence  
+- **Project System:** Qt `.pro` (qmake)  
 
 ---
 
-## 🧠 Architecture Summary
-
-MediMate AI is designed around a decoupled, modular architecture separation:
+## 🧠 Architecture Overview
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Presentation Layer (UI)                         │
-│   [MainWindow (Qt)]  <──>  [ProfileDetailsDialog]  <──>  [QSS Styles]  │
-└───────────┬────────────────────────────────────────────────────────────┘
-            │ Controls UI interactions, inputs, and widgets
-            ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                      Business Logic & State Layer                      │
-│   [ChatBot FSM]  <───>  [HealthScore Engine]  <───>  [ToDoManager]     │
-└───────────┬────────────────────────────────────────────────────────────┘
-            │ Evaluates conditions, schedules tasks, rules FSM logic
-            ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                     Data Persistence & Model Layer                     │
-│   [FileManager]  <───>  [ProfileManager]  <───>  [HistoryManager]      │
-└────────────────────────────────────────────────────────────────────────┘
+Presentation Layer (Qt UI)
+        ↓
+Business Logic Layer (FSM Engine, Health Score, Task Manager)
+        ↓
+Data Layer (Profile Manager, File Manager, History Manager)
 ```
 
-### Finite State Machine (FSM) Workflow
+### FSM Flow
 
 ```
-       ┌───────────────────────────────┐
-       │             IDLE              │
-       └───────────────┬───────────────┘
-                       │ symptom detected
-                       ▼
-       ┌───────────────────────────────┐
-       │      SEVERITY_ASSESSMENT      │
-       └───────────────┬───────────────┘
-                       │ severity inputted
-                       ▼
-       ┌───────────────────────────────┐
-       │       SYMPTOM_GATHERING       │
-       └───────────────┬───────────────┘
-                       │ follow-ups completed
-                       ▼
-       ┌───────────────────────────────┐
-       │      PROVIDING_DIAGNOSIS      │
-       └───────────────────────────────┘
- ───────────────────────────────────────────────
-  * EMERGENCY KEYWORD DETECTION interrupts 
-    any state instantly to trigger EMERGENCY state.
- ───────────────────────────────────────────────
+IDLE → SEVERITY_ASSESSMENT → SYMPTOM_GATHERING → DIAGNOSIS
+                 ↑
+     EMERGENCY INTERRUPT (global override)
 ```
 
 ---
 
 ## 🚀 How to Build & Run
-
-### Prerequisites
-
-* **Qt SDK:** Qt 6.x (Widgets module required)
-* **Compiler:** C++17 compatible compiler (GCC 9+, Clang 10+, MSVC 2019+, or MinGW 11+)
-* **IDE:** Qt Creator (recommended) or any C++ environment with `qmake`/CMake integration.
 
 ### Method 1: Qt Creator (Recommended)
 
@@ -135,60 +99,66 @@ cd MediMate
 ```
 
 2. Open the Project:
-- Launch Qt Creator
-- Click File → Open File or Project...
-- Navigate to the cloned folder
-- Open MediMate.pro
+- Launch Qt Creator  
+- Click File → Open File or Project...  
+- Open `MediMate.pro`
 
 3. Configure Build Kit:
-- Select your installed Qt 6 kit (e.g., Desktop Qt 6.x.x MinGW 64-bit)
+- Select Qt 6 kit (MinGW / MSVC)
 
-4. Compile & Execute:
-- Press Ctrl + B to build the application
-- Press Ctrl + R to run it
+4. Build & Run:
+- Press Ctrl + B
+- Press Ctrl + R
 
 ---
 
 ### Method 2: Command Line (qmake)
 
-1. Clone the Repository:
+1. Clone Repository:
 ```bash
 git clone https://github.com/Amna-tuz-Zahra/MediMate.git
 cd MediMate
 ```
 
-2. Create Build Directory:
+2. Create Build Folder:
 ```bash
 mkdir build
 cd build
 ```
 
-3. Run qmake and Build:
+3. Build Project:
 ```bash
 qmake ..\MediMate.pro
-mingw32-make   # or make / nmake depending on your toolchain
+mingw32-make
 ```
 
-4. Run the Application:
+4. Run Application:
 ```bash
 release\MediMate.exe
 ```
+
 ---
 
 ## 📌 Project Highlights
 
-* **100% Local Execution:** No data leaves the device; entirely offline system respecting user privacy.
-* **Robust Emergency Handlers:** Real-time priority interrupt mechanism bypasses standard FSM queues to prioritize critical warnings.
-* **Production-Grade Clean Code:** Written with strict separation of UI components and underlying health models.
+- Fully offline AI health assistant
+- FSM-driven intelligent conversation system
+- Emergency detection mechanism
+- Clean modular architecture
+- Lightweight and privacy-focused design
 
 ---
 
 ## ⚠️ Disclaimer
 
-MediMate AI is an **educational software demonstration** and is **not a substitute for professional medical advice, diagnosis, or treatment**. Always consult a qualified healthcare provider with any questions you may have regarding a medical condition. If you are experiencing a medical emergency, call your local emergency services (e.g., 911) immediately.
+MediMate AI is an educational project and is NOT a medical device.  
+It does not provide professional medical diagnosis or treatment.
 
 ---
 
-<div align="center">
-  <sub>Developed with ❤️ using Qt 6 & C++17</sub>
-</div>
+## 👩‍💻 Developer
+
+**Amna Tuz Zahra**  
+GitHub: https://github.com/Amna-tuz-Zahra
+
+---
