@@ -1,3 +1,5 @@
+# 🩺 MediMate AI
+
 <div align="center">
   <img width="80" src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Stethoscope/3D/stethoscope_3d.png" alt="MediMate Logo"/>
   <h3>A professional offline AI health assistant built with Qt 6 & C++17</h3>
