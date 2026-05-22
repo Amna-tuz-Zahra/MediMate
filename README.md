@@ -130,8 +130,8 @@ MediMate AI is designed around a decoupled, modular architecture separation:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/AmnaZahra05/MediMate.git
-   cd MediMate
+   git clone https://github.com/Amna-tuz-Zahra/MediMate.git
+cd MediMate
    ```
 2. **Open the Project:**
    * Launch **Qt Creator**.
@@ -149,7 +149,7 @@ Ensure your Qt 6 environment variables are configured and the Qt bin path is in 
 
 ```bash
 # Clone and enter the repo
-git clone https://github.com/AmnaZahra05/MediMate.git
+git clone https://github.com/Amna-tuz-Zahra/MediMate.git
 cd MediMate
 
 # Create a build directory
